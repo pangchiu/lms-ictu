@@ -13,10 +13,10 @@ import 'package:lms/model/doc.dart';
 import 'package:lms/model/exe.dart';
 import 'package:lms/model/item_list_rep.dart';
 import 'package:lms/model/nofity.dart';
-import 'package:lms/screen/class_page.dart';
-import 'package:lms/screen/tab/discuss_tab.dart';
-import 'package:lms/screen/tab/doc_tab.dart';
-import 'package:lms/screen/tab/exe_tab.dart';
+import 'package:lms/screen/class/class_page.dart';
+import 'package:lms/screen/class/tab/discuss_tab.dart';
+import 'package:lms/screen/class/tab/doc_tab.dart';
+import 'package:lms/screen/class/tab/exe_tab.dart';
 import 'package:lms/text_style.dart';
 
 class NofityPage extends StatefulWidget {
@@ -112,7 +112,7 @@ class _NofityPageState extends State<NofityPage> {
     var scaffoldKey = GlobalKey<ScaffoldState>();
     Size size = MediaQuery.of(context).size;
     return BlocProvider(
-      create: (context) => ScreenBloc(screen: 1),
+      create: (context) => ScreenBloc(screen: 4),
       child: Scaffold(
         key: scaffoldKey,
         drawer: SideBar(
@@ -156,6 +156,8 @@ class _NofityPageState extends State<NofityPage> {
                           if (listCheck[i]) {
                             listNofity.removeAt(i);
                             listCheck.removeAt(i);
+                            widgets.removeAt(i);
+                            i--;
                           }
                         }
                       });
@@ -234,7 +236,12 @@ class _NofityPageState extends State<NofityPage> {
               itemBuilder: (context, index) => NofityItem(
                 color: index % 2 == 0 ? kItemColor4 : kItemColor3,
                 onTap: () {
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ClassPage(name: listNofity[index].title, tabs: widgets[index])));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ClassPage(
+                              name: listNofity[index].title,
+                              tabs: widgets[index])));
                 },
                 nofity: listNofity[index],
                 check: listCheck[index],

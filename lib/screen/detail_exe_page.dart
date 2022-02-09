@@ -266,7 +266,7 @@ class _DetailExeState extends State<DetailExe> {
 
   Widget buildControl() {
     return Visibility(
-      visible: widget.type == TypeRoom.checkroom && !isUnSummited,
+      visible: widget.type == TypeRoom.classroom || (widget.type == TypeRoom.checkroom && !isUnSummited),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(

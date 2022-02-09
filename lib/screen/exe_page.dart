@@ -27,7 +27,7 @@ class _ExePageState extends State<ExePage> {
   ];
 
   final List<Exe> exes = [
-    Exe('Công nghệ ASP.NET-2-21', DateTime.now(), DateTime.now(), 'Nguyễn Thị B', null, StatusExe.short)
+    Exe('Công nghệ ASP.NET-2-21', DateTime.now(), DateTime.now(), 'Nguyễn Thị B', null, StatusExe.late)
   ];
 
   List<Exe> tempExes = [];

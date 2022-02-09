@@ -83,7 +83,7 @@ const kStyle9 = TextStyle(
 const kStyle10 = TextStyle(
     fontSize: 15,
     fontFamily: 'Montserrat',
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.w400,
     color: Colors.white);
 
 const kStyleChoice1 = TextStyle(
@@ -166,3 +166,10 @@ const kStyleHightLight5 = TextStyle(
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w400,
     color: kHightLightColor);
+
+
+    const kStyleHightLight6 = TextStyle(
+    fontSize: 10,
+    fontFamily: 'Montserrat',
+    fontWeight: FontWeight.w700,
+    color: kHightLightColor2);

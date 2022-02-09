@@ -14,6 +14,10 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _isSave = false;
+  bool isSee = false;
+  bool showNofi = false;
+  TextEditingController editingController1 = TextEditingController();
+  TextEditingController editingController2 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -73,9 +77,11 @@ class _LoginPageState extends State<LoginPage> {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 40),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               TextFiledContainer(
                                 child: TextFormField(
+                                  controller: editingController1,
                                   style: kStyle4,
                                   decoration: const InputDecoration(
                                       border: InputBorder.none),
@@ -90,10 +96,22 @@ class _LoginPageState extends State<LoginPage> {
                               const SizedBox(height: 20),
                               TextFiledContainer(
                                 child: TextFormField(
+                                  controller: editingController2,
                                   style: kStyle4,
                                   decoration: const InputDecoration(
                                       border: InputBorder.none),
                                   cursorColor: kPrimaryColor,
+                                  obscureText: isSee,
+                                ),
+                                icon: IconButton(
+                                  icon: Icon(isSee
+                                      ? Icons.visibility_off
+                                      : Icons.visibility),
+                                  onPressed: () {
+                                    setState(() {
+                                      isSee = !isSee;
+                                    });
+                                  },
                                 ),
                                 label: const Text(
                                   'Mật khẩu',
@@ -119,6 +137,12 @@ class _LoginPageState extends State<LoginPage> {
                                       style: kStyle5),
                                 ],
                               ),
+                              Visibility(
+                                  visible: showNofi,
+                                  child: const Text(
+                                    'Tài khoản hoặc mật khẩu không được bỏ trống',
+                                    style: kStyleHightLight6,
+                                  )),
                               const SizedBox(
                                 height: 40,
                               ),
@@ -131,13 +155,45 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                                 child: MaterialButton(
                                   onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => const HomePage(),
-                                        ));
+                                    if (editingController1.text.isEmpty ||
+                                        editingController2.text.isEmpty) {
+                                      setState(() {
+                                        showNofi = true;
+                                      });
+                                    } else {
+                                      if (editingController1.text
+                                                  .compareTo('1') ==
+                                              0 &&
+                                          editingController2.text
+                                                  .compareTo('1') ==
+                                              0) {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const HomePage(),
+                                            ));
+                                      } else {
+                                        WidgetsBinding.instance!
+                                            .addPostFrameCallback((_) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar( SnackBar(
+                                            behavior: SnackBarBehavior.floating,
+                                            margin:
+                                                EdgeInsets.only(bottom: size.height - 46),
+                                            content: const Text(
+                                                "Đăng nhập không thành công!",
+                                                style: kStyle10),
+                                            backgroundColor: kPrimaryColor,
+                                            dismissDirection:
+                                                DismissDirection.up,
+                                          ));
+                                        });
+                                      }
+                                    }
                                   },
-                                  child: const Text('ĐĂNG NHẬP', style: kStyle1),
+                                  child:
+                                      const Text('ĐĂNG NHẬP', style: kStyle1),
                                 ),
                               ),
                             ],

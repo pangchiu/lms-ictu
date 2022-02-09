@@ -11,10 +11,10 @@ import 'package:lms/component/side_bar.dart';
 import 'package:lms/model/doc.dart';
 import 'package:lms/model/exe.dart';
 import 'package:lms/model/item_list_rep.dart';
-import 'package:lms/screen/class_page.dart';
-import 'package:lms/screen/tab/discuss_tab.dart';
-import 'package:lms/screen/tab/doc_tab.dart';
-import 'package:lms/screen/tab/exe_tab.dart';
+import 'package:lms/screen/class/class_page.dart';
+import 'package:lms/screen/class/tab/discuss_tab.dart';
+import 'package:lms/screen/class/tab/doc_tab.dart';
+import 'package:lms/screen/class/tab/exe_tab.dart';
 
 class CheckPage extends StatelessWidget {
   const CheckPage({Key? key}) : super(key: key);
