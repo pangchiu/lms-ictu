@@ -74,7 +74,7 @@ class _NofityPageState extends State<NofityPage> {
     ],
     [
       DisCussTab(
-        color: kItemColor4,
+        color: kItemColor3,
         code: 'Dự án phát triển phần mềm',
         teacher: 'Nguyễn Thu Phương',
         posts: [
